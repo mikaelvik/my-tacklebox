@@ -1,11 +1,8 @@
-package no.bekk.fagdag.innovasjon;
+package fagdag.innovasjon.domain;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
-import static no.bekk.fagdag.innovasjon.Tool.*;
-import static no.bekk.fagdag.innovasjon.Weapon.Knife;
 
 /**
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
@@ -13,9 +10,9 @@ import static no.bekk.fagdag.innovasjon.Weapon.Knife;
  */
 public enum Skill {
     Sneak,
-    ClimbWall(Rope, GrapplingHook),
-    SetArson(Gasolin, Matches),
-    Stab(Knife);
+    ClimbWall(Tool.Rope, Tool.GrapplingHook),
+    SetArson(Tool.Gasolin, Tool.Matches),
+    Stab(Weapon.Knife);
 
     private Set<Utility> necessaryUtilities;
 

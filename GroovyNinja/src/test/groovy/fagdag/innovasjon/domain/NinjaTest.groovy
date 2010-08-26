@@ -1,4 +1,4 @@
-package no.bekk.fagdag.innovasjon
+package fagdag.innovasjon.domain
 
 import org.junit.Before
 import org.junit.Test

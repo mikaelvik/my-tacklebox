@@ -1,4 +1,4 @@
-package no.bekk.fagdag.innovasjon;
+package fagdag.innovasjon.domain;
 
 /**
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no

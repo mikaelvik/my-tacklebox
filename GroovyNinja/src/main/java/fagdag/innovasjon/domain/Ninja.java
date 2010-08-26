@@ -1,6 +1,8 @@
-package no.bekk.fagdag.innovasjon;
+package fagdag.innovasjon.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -13,14 +15,6 @@ public class Ninja {
     private Set<Skill> skills;
     private Set<Utility> utilities;
 
-
-
-
-
-
-
-
-
     public String getName() {
         return name;
     }
@@ -29,6 +23,17 @@ public class Ninja {
         this.name = name;
     }
 
+    public Set<Utility> getUtilities() {
+        if (utilities == null) {
+            utilities = new HashSet<Utility>();
+        }
+        return utilities;
+    }
+
+    public void addWeapon(Weapon weapon) {
+        getUtilities().add(weapon);
+    }
+    
     public Set<Skill> getSkills() {
         if (skills == null) {
             skills = new HashSet<Skill>();
@@ -53,4 +58,13 @@ public class Ninja {
         return true;
     }
 
+    public List<Weapon> getWeapons() {
+        List<Weapon> weapons = new ArrayList<Weapon>();
+        for (Utility utility : utilities) {
+            if (utility instanceof Weapon) {
+                weapons.add((Weapon) utility);
+            }
+        }
+        return weapons;
+    }
 }

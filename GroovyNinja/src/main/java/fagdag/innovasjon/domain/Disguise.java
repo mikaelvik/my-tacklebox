@@ -1,6 +1,4 @@
-package no.bekk.fagdag.innovasjon;
-
-import org.joda.time.DateTime;
+package fagdag.innovasjon.domain;
 
 /**
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no

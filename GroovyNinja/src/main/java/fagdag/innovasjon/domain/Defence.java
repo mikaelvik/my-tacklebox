@@ -1,8 +1,10 @@
-package no.bekk.fagdag.innovasjon;
+package fagdag.innovasjon.domain;
 
 /**
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
  * @since 1.0
  */
-public interface Utility {
+public enum Defence {
+    Wall,
+    
 }

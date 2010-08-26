@@ -1,4 +1,4 @@
-package no.bekk.fagdag.innovasjon;
+package fagdag.innovasjon.domain;
 
 import java.util.Set;
 

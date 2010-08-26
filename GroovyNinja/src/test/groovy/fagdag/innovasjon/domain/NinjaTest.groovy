@@ -43,13 +43,13 @@ class NinjaTest {
 
         ninja = new Ninja(
                 skills: [Skill.ClimbWall],
-                utilities: [Tool.Rope, Tool.GrapplingHook],
+                utilities: [Utility.Type.Rope, Utility.Type.GrapplingHook],
                 kills: 10
         )
 
         println ninja
 
-        ninja.utilities << Weapon.Shuriken << Weapon.Poison
+        ninja.utilities << Utility.Type.Shuriken << Utility.Type.Poison
 
         // closure
         ninja.utilities.each { utility ->

@@ -10,12 +10,7 @@ class SkillBuilder extends BaseBuilder {
 
     def Skill skill
 
-    def SkillBuilder create() {
-        skill = Skill.SetArson
-        this
-    }
-
-    def SkillBuilder type(Skill newSkill) {
+    def SkillBuilder create(Skill newSkill) {
         skill = newSkill
         this
     }

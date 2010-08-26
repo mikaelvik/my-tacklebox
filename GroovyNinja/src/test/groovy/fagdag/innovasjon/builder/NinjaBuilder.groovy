@@ -13,9 +13,15 @@ class NinjaBuilder extends BaseBuilder {
 
     NinjaBuilder create() {
         ninja = new Ninja(
-                name: "Ole",
+                name: "Hattori Hanzo",
                 skills: [Skill.SetArson, Skill.Stab]
         )
+        this
+    }
+
+    public NinjaBuilder restore() {
+        ninja = holder.ninja
+        holder.current = ninja
         this
     }
 
@@ -25,9 +31,8 @@ class NinjaBuilder extends BaseBuilder {
     }
 
     protected void apply() {
-//        println "ninja.holder ${holder}"
         holder.current = ninja
         holder.ninja = ninja
     }
-    
+
 }

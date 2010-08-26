@@ -11,10 +11,12 @@ import java.util.Set;
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
  * @since 1.0
  */
+@SuppressWarnings({"UnusedDeclaration"})
 public class Ninja {
 
     private String name;
     private Integer kills;
+    private String dojo;
     private Set<Skill> skills;
     private Set<Utility> utilities;
 
@@ -36,7 +38,7 @@ public class Ninja {
     public void addWeapon(Weapon weapon) {
         getUtilities().add(weapon);
     }
-    
+
     public Set<Skill> getSkills() {
         if (skills == null) {
             skills = new HashSet<Skill>();

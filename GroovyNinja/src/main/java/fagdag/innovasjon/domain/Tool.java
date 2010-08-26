@@ -4,10 +4,9 @@ package fagdag.innovasjon.domain;
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
  * @since 1.0
  */
-public enum Tool implements Utility {
-    GrapplingHook,
-    Chisel,
-    Rope,
-    Gasolin,
-    Matches
+public class Tool extends Utility {
+
+    private Integer price;
+    private String description;
+    
 }

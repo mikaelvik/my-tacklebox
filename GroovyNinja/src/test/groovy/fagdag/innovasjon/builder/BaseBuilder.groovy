@@ -1,7 +1,8 @@
 package fagdag.innovasjon.builder
 
 import fagdag.innovasjon.domain.Ninja
-import fagdag.innovasjon.domain.Weapon
+import fagdag.innovasjon.domain.Utility
+import fagdag.innovasjon.domain.Skill
 
 /**
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
@@ -21,15 +22,19 @@ abstract class BaseBuilder {
         new NinjaBuilder(holder: holder).create()
     }
 
-
-    def WeaponBuilder weapon() {
+    def NinjaBuilder editNinja() {
         doApply()
-        new WeaponBuilder(holder: holder).create()
+        new NinjaBuilder(holder: holder).restore()
     }
 
-    def SkillBuilder skill() {
+    def WeaponBuilder weapon(Utility.Type type) {
         doApply()
-        new SkillBuilder(holder: holder).create()
+        new WeaponBuilder(holder: holder).create(type)
+    }
+
+    def SkillBuilder skill(Skill skill) {
+        doApply()
+        new SkillBuilder(holder: holder).create(skill)
     }
 
     protected abstract void apply()
@@ -46,5 +51,5 @@ abstract class BaseBuilder {
         doApply()
         holder.ninja
     }
-    
+
 }

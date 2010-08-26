@@ -29,6 +29,8 @@ public class NinjaBuilderTest {
     @Test
     public void should() {
         Ninja ninja = builder.get();
+
+        
         for (Weapon weapon : ninja.getWeapons()) {
             System.out.println("w: " + weapon);
         }

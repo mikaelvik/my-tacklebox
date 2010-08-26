@@ -1,6 +1,7 @@
 package fagdag.innovasjon.builder
 
 import fagdag.innovasjon.domain.Ninja
+import fagdag.innovasjon.domain.Skill
 
 /**
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
@@ -11,7 +12,10 @@ class NinjaBuilder extends BaseBuilder {
     def Ninja ninja
 
     NinjaBuilder create() {
-        ninja = new Ninja()
+        ninja = new Ninja(
+                name: "Ole",
+                skills: [Skill.SetArson, Skill.Stab]
+        )
         this
     }
 

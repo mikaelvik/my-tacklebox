@@ -38,4 +38,32 @@ class NinjaTest {
         assertFalse(ninja.isSensei())
     }
 
+    @Test
+    def void shouldClimbWall(){
+
+        ninja = new Ninja(
+                skills: [Skill.ClimbWall],
+                utilities: [Tool.Rope, Tool.GrapplingHook],
+                kills: 10
+        )
+
+        println ninja
+
+        ninja.utilities << Weapon.Shuriken << Weapon.Poison
+
+        // closure
+        ninja.utilities.each { utility ->
+            println "u: ${utility}"
+        }
+//        for (Weapon weapon : ninja.getWeapons()) {
+//            System.out.println("w: " + weapon);
+//        }
+//
+//        for (Skill skill : ninja.getSkills()) {
+//            System.out.println("s: " + skill);
+//        }
+
+        assertTrue(ninja.can(Skill.ClimbWall));
+    }
+
 }

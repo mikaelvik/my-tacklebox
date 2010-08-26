@@ -19,4 +19,8 @@ public enum Skill {
     Skill(Utility... ass) {
         necessaryUtilities = new HashSet<Utility>(Arrays.asList(ass));
     }
+
+    boolean hasNecessaryUtilities(Set<Utility> availableUtilities) {
+        return availableUtilities.containsAll(necessaryUtilities);
+    }
 }

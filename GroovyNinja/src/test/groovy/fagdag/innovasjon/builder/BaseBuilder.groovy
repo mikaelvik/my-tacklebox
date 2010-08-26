@@ -13,19 +13,16 @@ abstract class BaseBuilder {
     Boolean applied = false
 
     def static SetupBuilder start() {
-//        println "create"
         SetupBuilder.create()
     }
 
     def NinjaBuilder ninja() {
-//        println "ninja"
         doApply()
         new NinjaBuilder(holder: holder).create()
     }
 
 
     def WeaponBuilder weapon() {
-//        println "weapon"
         doApply()
         new WeaponBuilder(holder: holder).create()
     }
@@ -39,7 +36,6 @@ abstract class BaseBuilder {
 
     public def doApply() {
         if (!applied) {
-//            println "applying"
             apply()
             applied = true
         }

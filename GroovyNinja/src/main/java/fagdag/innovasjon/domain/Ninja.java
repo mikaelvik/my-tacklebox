@@ -1,5 +1,7 @@
 package fagdag.innovasjon.domain;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.Set;
 public class Ninja {
 
     private String name;
+    private Integer kills;
     private Set<Skill> skills;
     private Set<Utility> utilities;
 
@@ -58,6 +61,10 @@ public class Ninja {
         return true;
     }
 
+    public boolean can(Skill skill) {
+        return skill.hasNecessaryUtilities(getUtilities());
+    }
+
     public List<Weapon> getWeapons() {
         List<Weapon> weapons = new ArrayList<Weapon>();
         for (Utility utility : utilities) {
@@ -66,5 +73,9 @@ public class Ninja {
             }
         }
         return weapons;
+    }
+
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

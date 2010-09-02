@@ -5,8 +5,7 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
-import static fagdag.innovasjon.domain.Skill.ClimbWall;
-import static fagdag.innovasjon.domain.Skill.Stab;
+import static fagdag.innovasjon.domain.Skill.*;
 import static fagdag.innovasjon.domain.Utility.Type.*;
 import static org.junit.Assert.*;
 
@@ -22,8 +21,9 @@ public class NinjaBuilderTest {
     @Before
     public void setup() {
         builder = BaseBuilder.start()
-                .ninja()
+                .ninja().name("Hattori Hanzô")
                 .skill(ClimbWall)
+                .skill(SwordFight)
                 .weapon(Knife).mojo(10)
                 .weapon(Shuriken).acquired(new DateTime().minusDays(10))
                 .tool(Rope);
@@ -31,19 +31,30 @@ public class NinjaBuilderTest {
     }
 
     @Test
-    public void shouldDemandNecessaryToolsForClimbingWall() {
-        assertFalse(ninja.can(ClimbWall));
-
-        builder.tool(GrapplingHook).doApply();
-        assertTrue(ninja.can(ClimbWall));
+    public void shouldShowStartValues() {
+        assertEquals("Hattori Hanzô", ninja.getName());
+        assertEquals(2, ninja.getWeapons().size());
+        assertFalse(ninja.can(SwordFight));
     }
 
     @Test
-    public void shouldChangeNinjaName() {
-        String oldName = ninja.getName();
-
+    public void shouldChangeName() {
         builder.editNinja().name("Judoole");
-        assertNotSame(oldName, ninja.getName());
+        assertNotSame("Hattori Hanzô", ninja.getName());
+    }
+
+    @Test
+    public void shouldAddWeapon() {
+        builder.editNinja().weapon(Katana).mojo(2000).doApply();
+        assertEquals(3, ninja.getWeapons().size());
+        assertTrue(ninja.can(SwordFight));
+    }
+
+    @Test
+    public void shouldDemandNecessaryToolsForClimbingWall() {
+        assertFalse(ninja.can(ClimbWall));
+        builder.tool(GrapplingHook).doApply();
+        assertTrue(ninja.can(ClimbWall));
     }
 
     @Test

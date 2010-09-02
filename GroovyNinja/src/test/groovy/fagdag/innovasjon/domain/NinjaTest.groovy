@@ -14,11 +14,14 @@ import static org.junit.Assert.assertTrue
  */
 class NinjaTest {
 
-    Ninja3 ninja
+    NinjaPrototype ninja
+
+    // change implementation...
+    Class ninjaClass = Ninja.class // Ninja2.class eller Ninja3.class
 
     @Before
     public void setup() {
-        ninja = new Ninja3(name: "Erik")
+        ninja = ninjaClass.newInstance(name: "Erik")
         Skill.values().each { skill ->
             ninja.addSkill skill
         }
@@ -27,7 +30,6 @@ class NinjaTest {
     @Test
     def void ignoreAccessorMethods() {
         ninja.name = "Hachisuka Tenzo"
-//        assert ninja.getName(), ninja.name
         println "Hi ${ninja.name}, mah daawg!"
     }
 
@@ -47,7 +49,7 @@ class NinjaTest {
     @Test
     def void shouldClimbWall() {
 
-        ninja = new Ninja3(
+        ninja = ninjaClass.newInstance(
                 skills: [Skill.ClimbWall],
                 kills: 10
         )
@@ -61,7 +63,9 @@ class NinjaTest {
             println "$s u: ${it.type}"
         }
 
-        ninja.utilities.each(c)
+        ninja.utilities.each { utility ->
+            println utility
+        }
 
         println "-----------------"
         s = "Mikz"
@@ -82,7 +86,7 @@ class NinjaTest {
 
     @Test
     public void shouldImplementNinjaWithGroovy() {
-        ninja = new Ninja3()
+        ninja = ninjaClass.newInstance()
         ninja.skills = Skill.values().asType(List)
         assert ninja.isSensei()
 
@@ -104,7 +108,7 @@ class NinjaTest {
 
     @Test
     public void shouldNeedOnlyOneTypeOfSwordToSwordFight() {
-        ninja = new Ninja3(skills: [SwordFight])
+        ninja = ninjaClass.newInstance(skills: [SwordFight])
         assert !ninja.can(SwordFight)
 
         ninja.utilities << new Weapon(type: Katana)

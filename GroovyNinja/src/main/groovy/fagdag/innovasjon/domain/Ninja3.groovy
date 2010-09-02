@@ -7,7 +7,8 @@ import org.apache.commons.lang.builder.ToStringBuilder
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
  * @since 1.0
  */
-class Ninja3 {
+@SuppressWarnings("GroovyAssignabilityCheck")
+class Ninja3 implements NinjaPrototype {
 
     private String name
     private String dojo
@@ -19,15 +20,15 @@ class Ninja3 {
         utilities << utility
     }
 
-    def addWeapon(weapon) {
+    def void addWeapon(Weapon weapon) {
         addUtility weapon
     }
 
-    def addTool(tool) {
+    def void addTool(Tool tool) {
         addUtility tool
     }
 
-    def addSkill(skill) {
+    def void addSkill(Skill skill) {
         skills << skill
     }
 
@@ -39,14 +40,26 @@ class Ninja3 {
         (Skill.values() - skills).size() == 0
     }
 
+    Ninja methodMissing(String methodName, args) {
+        this."${methodName}" = args[0]
+        this
+    }
+
+
     def boolean can(Skill skill) {
-        skill.hasNecessaryUtilities(utilities.collect { it.type }.asType(Set))
+        return skills.contains(skill) &&
+                (skill.hasNecessaryUtilities(utilities.collect { it.type }.asType(Set)))
+    }
+
+    def Set<Utility> getUtilities() {
+        utilities
     }
 
     def Set<Weapon> getWeapons() {
-        (Set) utilities.findAll {
+        utilities.findAll {
             it instanceof Weapon
         }
+
     }
 
     public String toString() {

@@ -2,6 +2,8 @@ package fagdag.innovasjon.builder
 
 import fagdag.innovasjon.domain.Ninja
 import fagdag.innovasjon.domain.Skill
+import static fagdag.innovasjon.domain.Skill.SetArson
+import static fagdag.innovasjon.domain.Skill.Stab
 
 /**
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
@@ -15,10 +17,13 @@ class NinjaBuilder extends BaseBuilder {
 
 
     NinjaBuilder create() {
+
         ninja = new Ninja(
                 name: "Hattori Hanzo",
-                skills: [Skill.SetArson, Skill.Stab]
+                kills: 667,
+                skills: [SetArson, Stab]
         )
+
         this
     }
 
@@ -32,7 +37,7 @@ class NinjaBuilder extends BaseBuilder {
         ninja."${methodName}" = args[0]
         this
     }
-    
+
     public NinjaBuilder name(String name) {
         ninja.name = name
         this

@@ -7,13 +7,17 @@ import org.apache.commons.lang.builder.ToStringBuilder
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
  * @since 1.0
  */
-class Ninja2 {
+class Ninja2 implements NinjaPrototype {
 
     private String name
     private String dojo
     private Integer kills
     private Set<Skill> skills = new HashSet<Skill>()
     private Set<Utility> utilities = new HashSet<Utility>()
+
+    Set<Utility> getUtilities() {
+        return utilities
+    }
 
     private void addUtility(Utility utility) {
         utilities.add(utility)
@@ -45,15 +49,18 @@ class Ninja2 {
     }
 
     public boolean can(Skill skill) {
-        Set<Utility.Type> types = new HashSet<Utility.Type>()
+        if (!skills.contains(skill)) {
+            return false
+        }
+        Set<Utility.Type> types = []
         for (Utility utility: utilities) {
             types.add(utility.getType())
         }
         return skill.hasNecessaryUtilities(types)
     }
 
-    public List<Weapon> getWeapons() {
-        List<Weapon> weapons = new ArrayList<Weapon>()
+    public Set<Weapon> getWeapons() {
+        Set<Weapon> weapons = []
         for (Utility utility: utilities) {
             if (utility instanceof Weapon) {
                 weapons.add((Weapon) utility)

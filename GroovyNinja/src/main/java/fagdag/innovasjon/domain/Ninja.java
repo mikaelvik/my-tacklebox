@@ -2,9 +2,7 @@ package fagdag.innovasjon.domain;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,7 +10,7 @@ import java.util.Set;
  * @since 1.0
  */
 @SuppressWarnings({"UnusedDeclaration"})
-public class Ninja {
+public class Ninja implements NinjaPrototype {
 
     private String name;
     private String dojo;
@@ -90,6 +88,9 @@ public class Ninja {
     }
 
     public boolean can(Skill skill) {
+        if (!getSkills().contains(skill)) {
+            return false;
+        }
         Set<Utility.Type> types = new HashSet<Utility.Type>();
         for (Utility utility : getUtilities()) {
             types.add(utility.getType());
@@ -97,8 +98,8 @@ public class Ninja {
         return skill.hasNecessaryUtilities(types);
     }
 
-    public List<Weapon> getWeapons() {
-        List<Weapon> weapons = new ArrayList<Weapon>();
+    public Set<Weapon> getWeapons() {
+        Set<Weapon> weapons = new HashSet<Weapon>();
         for (Utility utility : utilities) {
             if (utility instanceof Weapon) {
                 weapons.add((Weapon) utility);

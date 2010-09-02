@@ -32,9 +32,9 @@ abstract class BaseBuilder {
         new WeaponBuilder(holder: holder).create(type)
     }
 
-    def SkillBuilder skill(Skill skill) {
+    def ToolBuilder tool(Utility.Type type) {
         doApply()
-        new SkillBuilder(holder: holder).create(skill)
+        new ToolBuilder(holder: holder).create(type)
     }
 
     protected abstract void apply()

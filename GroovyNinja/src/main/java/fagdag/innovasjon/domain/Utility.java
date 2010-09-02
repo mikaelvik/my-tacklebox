@@ -22,6 +22,7 @@ public abstract class Utility {
     public enum Type {
         Tanto,
         Katana,
+        Sword,
         Shuriken,
         Knife,
         Explosive,

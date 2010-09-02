@@ -10,23 +10,32 @@ import static fagdag.innovasjon.domain.Utility.Type.*;
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
  * @since 1.0
  */
+@SuppressWarnings({"UnusedDeclaration"})
 public enum Skill {
-    SneakAttack,
-    ClimbWall(Rope, GrapplingHook),
-    SetArson(Gasolin, Matches),
-    Stab(Knife);
+    SneakAttack(true),
+    ClimbWall(true, Rope, GrapplingHook),
+    SetArson(true, Gasolin, Matches),
+    Stab(false, Knife, Katana),
+    SwordFight(false, Katana, Sword);
 
+    private Boolean needsAll;
     private Set<Utility.Type> necessaryUtilities;
 
-    Skill(Utility.Type... ass) {
+    Skill(boolean needsAll, Utility.Type... ass) {
+        this.needsAll = needsAll;
         necessaryUtilities = new HashSet<Utility.Type>(Arrays.asList(ass));
     }
 
-    boolean hasNecessaryUtilities(Set<Utility> available) {
-        Set<Utility.Type> availableTypes = new HashSet<Utility.Type>();
-        for (Utility availableUtility : available) {
-            availableTypes.add(availableUtility.getType());
+    boolean hasNecessaryUtilities(Set<Utility.Type> available) {
+        if (needsAll) {
+            return available.containsAll(necessaryUtilities);
+        } else {
+            for (Utility.Type utility : necessaryUtilities) {
+                if (available.contains(utility)) {
+                    return true;
+                }
+            }
+            return false;
         }
-        return availableTypes.containsAll(necessaryUtilities);
     }
 }

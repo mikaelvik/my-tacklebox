@@ -3,6 +3,7 @@ package fagdag.innovasjon.builder
 import fagdag.innovasjon.domain.Utility
 import fagdag.innovasjon.domain.Weapon
 import org.joda.time.DateTime
+import static fagdag.innovasjon.domain.Utility.Type.*
 
 /**
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
@@ -14,8 +15,8 @@ class WeaponBuilder extends BaseBuilder {
 
     def WeaponBuilder create(Utility.Type type) {
         weapon = new Weapon(
-                type: type ? type : Utility.Type.Katana,
-                mojoStrength: 10
+                type: type ? type : Katana,
+                mojo: 10
         )
         this
     }
@@ -25,8 +26,8 @@ class WeaponBuilder extends BaseBuilder {
         this
     }
 
-    def WeaponBuilder mojoStrength(Integer mojoStrength) {
-        weapon.mojoStrength = mojoStrength
+    def WeaponBuilder mojo(Integer mojo) {
+        weapon.mojo = mojo
         this
     }
 

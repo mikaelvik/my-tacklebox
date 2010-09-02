@@ -9,7 +9,10 @@ import fagdag.innovasjon.domain.Skill
  */
 class NinjaBuilder extends BaseBuilder {
 
+
     def Ninja ninja
+
+
 
     NinjaBuilder create() {
         ninja = new Ninja(
@@ -25,8 +28,18 @@ class NinjaBuilder extends BaseBuilder {
         this
     }
 
+    NinjaBuilder methodMissing(String methodName, args) {
+        ninja."${methodName}" = args[0]
+        this
+    }
+    
     public NinjaBuilder name(String name) {
         ninja.name = name
+        this
+    }
+
+    public NinjaBuilder skill(Skill skill) {
+        ninja.skills << skill
         this
     }
 
@@ -36,3 +49,4 @@ class NinjaBuilder extends BaseBuilder {
     }
 
 }
+

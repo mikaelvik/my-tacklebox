@@ -15,10 +15,10 @@ import java.util.Set;
 public class Ninja {
 
     private String name;
-    private Integer kills;
     private String dojo;
-    private Set<Skill> skills;
-    private Set<Utility> utilities;
+    private Integer kills;
+    private Set<Skill> skills = new HashSet<Skill>();
+    private Set<Utility> utilities = new HashSet<Utility>();
 
     public String getName() {
         return name;
@@ -28,22 +28,48 @@ public class Ninja {
         this.name = name;
     }
 
-    public Set<Utility> getUtilities() {
-        if (utilities == null) {
-            utilities = new HashSet<Utility>();
-        }
-        return utilities;
+    public String getDojo() {
+        return dojo;
     }
 
-    public void addWeapon(Weapon weapon) {
-        getUtilities().add(weapon);
+    public void setDojo(String dojo) {
+        this.dojo = dojo;
+    }
+
+    public Integer getKills() {
+        return kills;
+    }
+
+    public void setKills(Integer kills) {
+        this.kills = kills;
     }
 
     public Set<Skill> getSkills() {
-        if (skills == null) {
-            skills = new HashSet<Skill>();
-        }
         return skills;
+    }
+
+    public void setSkills(Set<Skill> skills) {
+        this.skills = skills;
+    }
+
+    public Set<Utility> getUtilities() {
+        return utilities;
+    }
+
+    public void setUtilities(Set<Utility> utilities) {
+        this.utilities = utilities;
+    }
+
+    private void addUtility(Utility utility) {
+        utilities.add(utility);
+    }
+
+    public void addWeapon(Weapon weapon) {
+        addUtility(weapon);
+    }
+
+    public void addTool(Tool tool) {
+        addUtility(tool);
     }
 
     public void addSkill(Skill skill) {
@@ -64,7 +90,11 @@ public class Ninja {
     }
 
     public boolean can(Skill skill) {
-        return skill.hasNecessaryUtilities(getUtilities());
+        Set<Utility.Type> types = new HashSet<Utility.Type>();
+        for (Utility utility : getUtilities()) {
+            types.add(utility.getType());
+        }
+        return skill.hasNecessaryUtilities(types);
     }
 
     public List<Weapon> getWeapons() {

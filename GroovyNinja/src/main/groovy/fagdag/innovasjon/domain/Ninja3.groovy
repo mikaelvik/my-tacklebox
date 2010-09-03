@@ -45,10 +45,11 @@ class Ninja3 implements NinjaPrototype {
         this
     }
 
-
     def boolean can(Skill skill) {
-        return skills.contains(skill) &&
-                (skill.hasNecessaryUtilities(utilities.collect { it.type }.asType(Set)))
+        Set available = utilities.collect {
+            it.type
+        }
+        skill in skills && skill.hasNecessaryUtilities(available)
     }
 
     def Set<Utility> getUtilities() {
@@ -57,7 +58,7 @@ class Ninja3 implements NinjaPrototype {
 
     def Set<Weapon> getWeapons() {
         utilities.findAll {
-            it instanceof Weapon
+            it.class == Weapon
         }
 
     }

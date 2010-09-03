@@ -24,6 +24,10 @@ public class Weapon extends Utility {
         this.acquired = acquired;
     }
 
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Weapon)) {

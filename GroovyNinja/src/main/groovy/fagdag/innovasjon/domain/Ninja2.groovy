@@ -54,7 +54,7 @@ class Ninja2 implements NinjaPrototype {
         }
         Set<Utility.Type> types = []
         for (Utility utility: utilities) {
-            types.add(utility.getType())
+            types << utility.type
         }
         return skill.hasNecessaryUtilities(types)
     }

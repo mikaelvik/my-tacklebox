@@ -3,7 +3,7 @@ package fagdag.innovasjon.domain
 import org.joda.time.DateTime
 import org.junit.Before
 import org.junit.Test
-import static fagdag.innovasjon.domain.Skill.SwordFight
+import static fagdag.innovasjon.domain.Skill.*
 import static fagdag.innovasjon.domain.Utility.Type.*
 import static org.junit.Assert.assertFalse
 import static org.junit.Assert.assertTrue
@@ -20,11 +20,40 @@ class NinjaTest {
     Class ninjaClass = Ninja.class // Ninja2.class eller Ninja3.class
 
     @Before
-    public void setup() {
+    def void setup() {
         ninja = ninjaClass.newInstance(name: "Erik")
         Skill.values().each { skill ->
             ninja.addSkill skill
         }
+    }
+
+    @Test
+    def void shouldPrintNinjaFromConstructorWithProperties() {
+        println createNinja()
+    }
+
+    def Ninja createNinja() {
+        new Ninja(name: "Hattori Hanzö",
+                dojo: "Bekkarado",
+                kills: 130,
+                skills: [SneakAttack, SetArson, SwordFight],
+                utilities: [new Weapon(
+                        type: Katana,
+                        mojo: 33,
+                        acquired: new DateTime().minusDays(1),
+                        nickname: "SlayerBoy")
+                ])
+    }
+
+    @Test
+    def void shouldShowAccessByPropertiesInsteadOfUglyReflection() {
+        ninja = createNinja()
+
+        assert ninja['dojo'] == "Bekkarado"
+        assert ninja.'kills' == 130
+        assert ninja.'getSkills'().contains(SneakAttack)
+        def field = "nickname"
+        assert ninja['weapons']?.find { it."$field" == "SlayerBoy"}
     }
 
     @Test
@@ -108,11 +137,28 @@ class NinjaTest {
 
     @Test
     public void shouldNeedOnlyOneTypeOfSwordToSwordFight() {
-        ninja = ninjaClass.newInstance(skills: [SwordFight])
+        ninja = new Ninja3(skills: [SwordFight])
         assert !ninja.can(SwordFight)
 
         ninja.utilities << new Weapon(type: Katana)
         assert ninja.can(SwordFight)
+    }
+
+    @Test
+    public void should() {
+        Ninja3 ninja = new Ninja3(
+                utilities: [
+                        new Tool(type: GrapplingHook),
+                        new Weapon(type: Sword),
+                        new Weapon(type: Katana),
+                        new Tool(type: Rope),
+                        new Weapon(type: Shuriken)
+                ]
+        )
+
+        ninja.weapons.each {
+            println it.type
+        }
     }
 
 

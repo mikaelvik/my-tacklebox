@@ -13,7 +13,10 @@ import static fagdag.innovasjon.domain.Utility.Type.*;
 @SuppressWarnings({"UnusedDeclaration"})
 public enum Skill {
     SneakAttack(true),
+
     ClimbWall(true, Rope, GrapplingHook),
+
+    
     SetArson(true, Gasolin, Matches),
     Stab(false, Knife, Katana),
     SwordFight(false, Katana, Sword);

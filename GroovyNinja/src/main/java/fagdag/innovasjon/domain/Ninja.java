@@ -108,6 +108,17 @@ public class Ninja implements NinjaPrototype {
         return weapons;
     }
 
+    
+    public Set<Tool> getTools() {
+        Set<Tool> tools = new HashSet<Tool>();
+        for (Utility utility : utilities) {
+            if (utility instanceof Tool) {
+                tools.add((Tool) utility);
+            }
+        }
+        return tools;
+    }
+
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }

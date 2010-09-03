@@ -1,18 +1,24 @@
 package fagdag.innovasjon.builder;
 
 import fagdag.innovasjon.domain.Ninja;
+import fagdag.innovasjon.domain.Skill;
+import fagdag.innovasjon.domain.Weapon;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashSet;
+
 import static fagdag.innovasjon.domain.Skill.*;
 import static fagdag.innovasjon.domain.Utility.Type.*;
+import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
 /**
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
  * @since 1.0
  */
+@SuppressWarnings({"UnusedDeclaration"})
 public class NinjaBuilderTest {
 
     private BaseBuilder builder;
@@ -52,7 +58,12 @@ public class NinjaBuilderTest {
 
     @Test
     public void shouldDemandNecessaryToolsForClimbingWall() {
-        assertFalse(ninja.can(ClimbWall));
+        assertFalse(
+
+
+                ninja.can(ClimbWall)
+
+        );
         builder.tool(GrapplingHook).doApply();
         assertTrue(ninja.can(ClimbWall));
     }
@@ -63,5 +74,29 @@ public class NinjaBuilderTest {
         assertTrue(ninja.can(Stab));
         assertFalse(ninja.can(ClimbWall));
     }
+
+    @Test
+    public void should() {
+        System.out.println(": " + createNinja());
+    }
+
+
+    public Ninja createNinja() {
+        Ninja ninja = new Ninja();
+        ninja.setName("Hattori Hanzö");
+        ninja.setDojo("Bekkarado");
+        ninja.setKills(130);
+        ninja.setSkills(new HashSet<Skill>(asList(SneakAttack, SetArson, SwordFight)));
+
+        Weapon weapon = new Weapon();
+        weapon.setType(Katana);
+        weapon.setMojo(33);
+        weapon.setAcquired(new DateTime().minusDays(1));
+        weapon.setNickname("SlayerBoy");
+        ninja.addWeapon(weapon);
+        
+        return ninja;
+    }
+
 
 }

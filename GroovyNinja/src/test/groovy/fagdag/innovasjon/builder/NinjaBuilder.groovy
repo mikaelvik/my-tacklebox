@@ -6,6 +6,10 @@ import static fagdag.innovasjon.domain.Skill.SetArson
 import static fagdag.innovasjon.domain.Skill.Stab
 
 /**
+ * Builder for ninjas. Add methods for all the fields you want
+ * to be able to set explicitly (from java). If you write your tests in
+ * Groovy methodMissing will handle anything you'd like to set.  
+ *
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
  * @since 1.0
  */

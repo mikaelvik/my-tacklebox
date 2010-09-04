@@ -43,6 +43,13 @@ public class NinjaBuilderTest {
         assertFalse(ninja.can(SwordFight));
     }
 
+
+    @Test
+    public void shouldMakeChangesToWeapons() {
+        builder.editWeapon().type(Sword).acquired(new DateTime());
+        assertTrue(ninja.can(SwordFight));
+    }
+
     @Test
     public void shouldChangeName() {
         builder.editNinja().name("Judoole");
@@ -74,12 +81,6 @@ public class NinjaBuilderTest {
         assertTrue(ninja.can(Stab));
         assertFalse(ninja.can(ClimbWall));
     }
-
-    @Test
-    public void should() {
-        System.out.println(": " + createNinja());
-    }
-
 
     public Ninja createNinja() {
         Ninja ninja = new Ninja();

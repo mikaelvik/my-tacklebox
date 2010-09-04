@@ -5,6 +5,8 @@ import fagdag.innovasjon.domain.Utility
 import static fagdag.innovasjon.domain.Utility.Type.GrapplingHook
 
 /**
+ * Builder for tools.
+ * 
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
  * @since 1.0
  */

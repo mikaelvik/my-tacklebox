@@ -4,6 +4,9 @@ import static fagdag.innovasjon.domain.Skill.*
 import static fagdag.innovasjon.domain.Utility.Type.*
 
 /**
+ * The class which gives access to a collection of ninjas in
+ * different states. Add more as your testing demands expand.  
+ *
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
  * @since 1.0
  */

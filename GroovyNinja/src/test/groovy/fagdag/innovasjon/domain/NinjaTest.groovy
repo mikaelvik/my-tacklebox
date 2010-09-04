@@ -145,7 +145,7 @@ class NinjaTest {
     }
 
     @Test
-    public void should() {
+    public void shouldCreateNinjaWithLotsaUtilities() {
         Ninja3 ninja = new Ninja3(
                 utilities: [
                         new Tool(type: GrapplingHook),
@@ -160,6 +160,5 @@ class NinjaTest {
             println it.type
         }
     }
-
 
 }

@@ -6,6 +6,8 @@ import org.joda.time.DateTime
 import static fagdag.innovasjon.domain.Utility.Type.*
 
 /**
+ * Builder for weapons.
+ * 
  * @author Mikael Vik (BEKK) - mikael.vik@bekk.no
  * @since 1.0
  */
@@ -18,6 +20,12 @@ class WeaponBuilder extends BaseBuilder {
                 type: type ? type : Katana,
                 mojo: 10
         )
+        this
+    }
+
+    WeaponBuilder restore() {
+        weapon = holder.ninja.weapons.asList()[-1]
+        holder.current = weapon
         this
     }
 
